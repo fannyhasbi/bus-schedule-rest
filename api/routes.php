@@ -14,6 +14,8 @@ Flight::route('GET /place', [$api, 'get_place']);
 Flight::route('GET /departure', [$api, 'get_departure']);
 Flight::route('POST /add-departure', [$api, 'add_departure']);
 
+Flight::route('GET /arrival', [$api, 'get_arrival']);
+
 Flight::route('*', function(){
   Flight::json([
     'status'  => 404,
