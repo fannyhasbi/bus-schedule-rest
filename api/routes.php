@@ -6,4 +6,13 @@ Flight::route('/', function(){
   echo "Welcome to Bus Schedule REST API!";
 });
 
-Flight::route('/bus', [$api, 'get_bus']);
+Flight::route('GET /bus', [$api, 'get_bus']);
+Flight::route('POST /add-bus', [$api, 'add_bus']);
+
+Flight::route('*', function(){
+  Flight::json([
+    'status'  => 404,
+    'message' => 'Not Found',
+    'data'    => null
+  ]);
+});
