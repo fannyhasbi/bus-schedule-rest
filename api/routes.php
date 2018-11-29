@@ -12,6 +12,7 @@ Flight::route('POST /add-bus', [$api, 'add_bus']);
 Flight::route('GET /place', [$api, 'get_place']);
 
 Flight::route('GET /departure', [$api, 'get_departure']);
+Flight::route('POST /add-departure', [$api, 'add_departure']);
 
 Flight::route('*', function(){
   Flight::json([

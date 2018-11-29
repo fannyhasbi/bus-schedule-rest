@@ -10,6 +10,8 @@ class Api {
     $db   = getenv('BSR_DB_NAME');
 
     $this->koneksi = mysqli_connect($host, $user, $pass, $db) or die(mysql_error());
+
+    date_timezone_set('Asia/Jakarta');
   }
 
   public function __destroy(){
@@ -31,6 +33,14 @@ class Api {
     Flight::json([
       'status' => 400,
       'message'=> 'Bad Request',
+      'data'   => null
+    ]);
+  }
+
+  private function response500(){
+    Flight::json([
+      'status' => 500,
+      'message'=> 'Internal Server Error',
       'data'   => null
     ]);
   }
@@ -108,5 +118,34 @@ class Api {
     }
 
     $this->response($data);
+  }
+
+  public function add_departure(){
+    $input = Flight::request()->data;
+
+    if(!(
+      isset($input->id_perusahaan) &&
+      isset($input->id_tujuan) &&
+      isset($input->id_asal) &&
+      isset($input->berangkat) &&
+      isset($input->sampai)
+    )){
+      $this->response400();
+    }
+    else {
+      $id_perusahaan = (int) $input->id_perusahaan;
+      $id_tujuan     = (int) $input->id_tujuan;
+      $id_asal       = (int) $input->id_asal;
+
+      // client time input is HH:mm
+      // so it has to be concated by the date
+      $berangkat = date('Y-m-d') .' '. $input->berangkat;
+      $sampai    = date('Y-m-d') .' '. $input->sampai;
+
+      $query = "INSERT INTO keberangkatan VALUES (null, $id_perusahaan, $id_tujuan, $id_asal, '$berangkat', '$sampai')";
+      mysqli_query($this->koneksi, $query) or $this->response500();
+
+      $this->response();
+    }
   }
 }
