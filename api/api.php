@@ -4,6 +4,18 @@ class Api {
   private $koneksi;
 
   public function __construct(){
+    // Mengatasi isu CORS
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: x-requested-with, x-requested-by");
+    header("Access-Control-Expose-Headers: Access-Control-Allow-Origin");
+    header("Access-Control-Allow-Methods: *");
+    header("Content-Type: application/json");
+    header( "Access-Control-Allow-Credentials: true");
+    // header( "Access-Control-Max-Age: 604800");
+    header( "Access-Control-Request-Headers: x-requested-with");
+    
+    date_default_timezone_set('Asia/Jakarta');
+
     $host = getenv('BSR_DB_HOST');
     $user = getenv('BSR_DB_USER');
     $pass = getenv('BSR_DB_PASS');
@@ -11,7 +23,6 @@ class Api {
 
     $this->koneksi = mysqli_connect($host, $user, $pass, $db) or die(mysql_error());
 
-    date_timezone_set('Asia/Jakarta');
   }
 
   public function __destroy(){
