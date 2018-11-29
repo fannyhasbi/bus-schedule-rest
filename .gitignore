@@ -5,4 +5,8 @@ composer.lock
 /tests/tests/
 /tests/results/
 
+# Environment variabel
 /api/.env
+
+bus-schedule-erd.png
+bus-schedule-rest.sql
