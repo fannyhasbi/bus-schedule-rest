@@ -181,4 +181,33 @@ class Api {
 
     $this->response($data);
   }
+
+  public function add_arrival(){
+    $input = Flight::request()->data;
+
+    if(!(
+      isset($input->id_perusahaan) &&
+      isset($input->id_tujuan) &&
+      isset($input->id_asal) &&
+      isset($input->berangkat) &&
+      isset($input->datang)
+    )){
+      $this->response400();
+    }
+    else {
+      $id_perusahaan = (int) $input->id_perusahaan;
+      $id_tujuan     = (int) $input->id_tujuan;
+      $id_asal       = (int) $input->id_asal;
+
+      // client time input is HH:mm
+      // so it has to be concated by the date
+      $berangkat = date('Y-m-d') .' '. $input->berangkat;
+      $datang    = date('Y-m-d') .' '. $input->datang;
+
+      $query = "INSERT INTO kedatangan VALUES (null, $id_perusahaan, $id_tujuan, $id_asal, '$berangkat', '$datang')";
+      mysqli_query($this->koneksi, $query) or $this->response500();
+
+      $this->response();
+    }
+  }
 }
