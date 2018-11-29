@@ -16,7 +16,7 @@ class Api {
     mysqli_close($this->koneksi);
   }
 
-  public function getBus(){
+  public function get_bus(){
     $data = array(
       'status' => 200,
       'message'=> 'OK'
