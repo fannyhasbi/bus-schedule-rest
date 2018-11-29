@@ -63,6 +63,20 @@ class Api {
     }
   }
 
+  public function get_place(){
+    $result = mysqli_query($this->koneksi, "SELECT * FROM tempat");
+
+    $data = array();
+    while($r = mysqli_fetch_assoc($result)){
+      $data[] = [
+        'id'   => $r['id'],
+        'nama' => $r['nama']
+      ];
+    }
+
+    $this->response($data);
+  }
+
   public function get_departure(){
     $query = "
       SELECT k.id,
@@ -83,13 +97,13 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id' => $r['id'],
-        'id_tujuan' => $r['id_tujuan'],
+        'id'          => $r['id'],
+        'id_tujuan'   => $r['id_tujuan'],
         'nama_tujuan' => $r['nama_tujuan'],
-        'id_asal' => $r['id_asal'],
-        'nama_asal' => $r['nama_asal'],
-        'berangkat' => $r['berangkat'],
-        'sampai' => $r['sampai']
+        'id_asal'     => $r['id_asal'],
+        'nama_asal'   => $r['nama_asal'],
+        'berangkat'   => $r['berangkat'],
+        'sampai'      => $r['sampai']
       ];
     }
 
