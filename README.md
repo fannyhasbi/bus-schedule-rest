@@ -86,6 +86,8 @@ Success response example
   "data": [
     {
       "id": 1,
+      "id_perusahaan": 1,
+      "nama_perusahaan": "Sinar Jaya",
       "id_tujuan": 2,
       "nama_tujuan": "Tegal",
       "id_asal": 1,
@@ -134,6 +136,8 @@ Success response example
   "data": [
     {
       "id": 3,
+      "id_perusahaan": 1,
+      "nama_perusahaan": "Sinar Jaya",
       "id_tujuan": 1,
       "nama_tujuan": "Semarang",
       "id_asal": 4,

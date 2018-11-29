@@ -101,6 +101,7 @@ class Api {
   public function get_departure(){
     $query = "
       SELECT k.id,
+        k.id_perusahaan,
         p.nama AS nama_perusahaan,
         k.id_tujuan,
         (SELECT nama FROM tempat WHERE id = k.id_tujuan) AS nama_tujuan,
@@ -118,13 +119,15 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id'          => (int) $r['id'],
-        'id_tujuan'   => (int) $r['id_tujuan'],
-        'nama_tujuan' => $r['nama_tujuan'],
-        'id_asal'     => (int) $r['id_asal'],
-        'nama_asal'   => $r['nama_asal'],
-        'berangkat'   => $r['berangkat'],
-        'sampai'      => $r['sampai']
+        'id'              => (int) $r['id'],
+        'id_perusahaan'   => (int) $r['id_perusahaan'],
+        'nama_perusahaan' => $r['nama_perusahaan'],
+        'id_tujuan'       => (int) $r['id_tujuan'],
+        'nama_tujuan'     => $r['nama_tujuan'],
+        'id_asal'         => (int) $r['id_asal'],
+        'nama_asal'       => $r['nama_asal'],
+        'berangkat'       => $r['berangkat'],
+        'sampai'          => $r['sampai']
       ];
     }
 
@@ -163,6 +166,7 @@ class Api {
   public function get_arrival(){
     $query = "
       SELECT k.id,
+        k.id_perusahaan,
         p.nama AS nama_perusahaan,
         k.id_tujuan,
         (SELECT nama FROM tempat WHERE id = k.id_tujuan) AS nama_tujuan,
@@ -180,13 +184,15 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id'          => (int) $r['id'],
-        'id_tujuan'   => (int) $r['id_tujuan'],
-        'nama_tujuan' => $r['nama_tujuan'],
-        'id_asal'     => (int) $r['id_asal'],
-        'nama_asal'   => $r['nama_asal'],
-        'berangkat'   => $r['berangkat'],
-        'datang'      => $r['datang']
+        'id'              => (int) $r['id'],
+        'id_perusahaan'   => (int) $r['id_perusahaan'],
+        'nama_perusahaan' => $r['nama_perusahaan'],
+        'id_tujuan'       => (int) $r['id_tujuan'],
+        'nama_tujuan'     => $r['nama_tujuan'],
+        'id_asal'         => (int) $r['id_asal'],
+        'nama_asal'       => $r['nama_asal'],
+        'berangkat'       => $r['berangkat'],
+        'datang'          => $r['datang']
       ];
     }
 
