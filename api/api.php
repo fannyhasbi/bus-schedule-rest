@@ -51,7 +51,7 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id' => $r['id'],
+        'id' => (int) $r['id'],
         'nama' => $r['nama']
       ];
     }
@@ -79,7 +79,7 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id'   => $r['id'],
+        'id'   => (int) $r['id'],
         'nama' => $r['nama']
       ];
     }
@@ -107,10 +107,10 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id'          => $r['id'],
-        'id_tujuan'   => $r['id_tujuan'],
+        'id'          => (int) $r['id'],
+        'id_tujuan'   => (int) $r['id_tujuan'],
         'nama_tujuan' => $r['nama_tujuan'],
-        'id_asal'     => $r['id_asal'],
+        'id_asal'     => (int) $r['id_asal'],
         'nama_asal'   => $r['nama_asal'],
         'berangkat'   => $r['berangkat'],
         'sampai'      => $r['sampai']
@@ -169,10 +169,10 @@ class Api {
     $data = array();
     while($r = mysqli_fetch_assoc($result)){
       $data[] = [
-        'id'          => $r['id'],
-        'id_tujuan'   => $r['id_tujuan'],
+        'id'          => (int) $r['id'],
+        'id_tujuan'   => (int) $r['id_tujuan'],
         'nama_tujuan' => $r['nama_tujuan'],
-        'id_asal'     => $r['id_asal'],
+        'id_asal'     => (int) $r['id_asal'],
         'nama_asal'   => $r['nama_asal'],
         'berangkat'   => $r['berangkat'],
         'datang'      => $r['datang']
