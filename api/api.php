@@ -36,21 +36,17 @@ class Api {
   }
 
   public function get_bus(){
-    $data = array(
-      'status' => 200,
-      'message'=> 'OK'
-    );
-
     $result = mysqli_query($this->koneksi, "SELECT * FROM perusahaan");
 
+    $data = array();
     while($r = mysqli_fetch_assoc($result)){
-      $data['data'][] = array(
+      $data[] = [
         'id' => $r['id'],
         'nama' => $r['nama']
-      );
+      ];
     }
 
-    Flight::json($data);
+    $this->response($data);
   }
 
   public function add_bus(){
@@ -65,5 +61,38 @@ class Api {
 
       $this->response();
     }
+  }
+
+  public function get_departure(){
+    $query = "
+      SELECT k.id,
+        p.nama AS nama_perusahaan,
+        k.id_tujuan,
+        (SELECT nama FROM tempat WHERE id = k.id_tujuan) AS nama_tujuan,
+        k.id_asal,
+        (SELECT nama FROM tempat WHERE id = k.id_asal) AS nama_asal,
+        k.berangkat,
+        k.sampai
+      FROM keberangkatan k
+      INNER JOIN perusahaan p
+        ON k.id_perusahaan = p.id
+    ";
+
+    $result = mysqli_query($this->koneksi, $query);
+
+    $data = array();
+    while($r = mysqli_fetch_assoc($result)){
+      $data[] = [
+        'id' => $r['id'],
+        'id_tujuan' => $r['id_tujuan'],
+        'nama_tujuan' => $r['nama_tujuan'],
+        'id_asal' => $r['id_asal'],
+        'nama_asal' => $r['nama_asal'],
+        'berangkat' => $r['berangkat'],
+        'sampai' => $r['sampai']
+      ];
+    }
+
+    $this->response($data);
   }
 }
