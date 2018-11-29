@@ -112,6 +112,8 @@ class Api {
       FROM keberangkatan k
       INNER JOIN perusahaan p
         ON k.id_perusahaan = p.id
+      WHERE DAY(k.berangkat) = DAY(CURDATE())
+      ORDER BY k.berangkat ASC;
     ";
 
     $result = mysqli_query($this->koneksi, $query);
@@ -177,6 +179,8 @@ class Api {
       FROM kedatangan k
       INNER JOIN perusahaan p
         ON k.id_perusahaan = p.id
+      WHERE DAY(k.berangkat) = DAY(CURDATE())
+      ORDER BY k.berangkat ASC;
     ";
 
     $result = mysqli_query($this->koneksi, $query);
