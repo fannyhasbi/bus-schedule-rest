@@ -6,6 +6,18 @@ Here I create my own ERD for the application
 
 ![Bus Schedule REST](./bus-schedule-erd.png "Bus Schedule REST")
 
+## Installation
+1. Move to your webserver folder. ex: `/opt/lampp/htdocs` or `C:\xampp\htdocs`
+2. Clone or Download this repository
+   ```bash
+   git clone https://github.com/fannyhasbi/
+   ```
+3. Install packages using [Composer](https://getcomposer.org/).
+   ```bash
+   composer install
+   ```
+4. Open your browser and access `http://localhost/bus-schedule-rest`
+
 ## Request
 ### Bus
 **GET** `/api/bus`
