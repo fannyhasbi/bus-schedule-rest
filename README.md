@@ -10,7 +10,7 @@ Here I create my own ERD for the application
 1. Move to your webserver folder. ex: `/opt/lampp/htdocs` or `C:\xampp\htdocs`
 2. Clone or Download this repository
    ```bash
-   git clone https://github.com/fannyhasbi/
+   git clone https://github.com/fannyhasbi/bus-schedule-rest
    ```
 3. Install packages using [Composer](https://getcomposer.org/).
    ```bash
