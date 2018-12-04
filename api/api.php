@@ -16,10 +16,10 @@ class Api {
     
     date_default_timezone_set('Asia/Jakarta');
 
-    $host = getenv('BSR_DB_HOST');
-    $user = getenv('BSR_DB_USER');
-    $pass = getenv('BSR_DB_PASS');
-    $db   = getenv('BSR_DB_NAME');
+    $host = $_ENV['BSR_DB_HOST'];
+    $user = $_ENV['BSR_DB_USER'];
+    $pass = $_ENV['BSR_DB_PASS'];
+    $db   = $_ENV['BSR_DB_NAME'];
 
     $this->koneksi = mysqli_connect($host, $user, $pass, $db) or die(mysql_error());
 
